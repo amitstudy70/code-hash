@@ -1,4 +1,6 @@
 // Permutaion - I
+
+// Varition - I using extra space
 class Solution {
 public:
 
@@ -32,3 +34,27 @@ public:
         return ans;
     }
 };
+
+
+
+
+// Varition - I without extra space
+void solve(vector<int>& nums,vector<vector<int>> &ans,int n,int index){
+
+        if(index==nums.size()){
+            ans.push_back(nums);
+            return;
+        }
+
+        for(int k=index;k<n;k++){
+                swap(nums[k],nums[index]);
+                solve(nums,ans,n,index+1);
+                swap(nums[k],nums[index]);
+        }
+
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        solve(nums,ans,nums.size(),0);
+        return ans;
+    }
